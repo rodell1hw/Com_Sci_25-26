@@ -5,5 +5,6 @@ public class BinTester {
         Bin period1Bin = new Bin();
         period1Bin.shake();
         period1Bin.empty();
+        period1Bin.open(true);
     }
 }
