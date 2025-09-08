@@ -2,7 +2,7 @@ public class Bin {
 
     private double heightft = 2.4;
     private String shape = "rectangular";
-    private boolean isCLosed = true;
+    private boolean isClosed = true;
     private String contents = "plastic";
     private int holes = 1;
     private char initial = 'B';
@@ -10,14 +10,43 @@ public class Bin {
 
     //this runs when you make a new bin
     public Bin() {
-        double heightft = 2.4;
-        String shape = "rectangular";
-        boolean canOpen = true;
-        String contents = "plastic";
-        int holes = 1;
-        char initial = 'B';
+        heightft = 2.4;
+        shape = "rectangular";
+        isClosed = true;
+        contents = "plastic";
+        holes = 2;
+        initial = 'B';
+    }
+
+    public Bin(int numOfHoles){
+        heightft = 2.4;
+        shape = "rectangular";
+        isClosed = true;
+        contents = "plastic";
+        holes = numOfHoles;
+        initial = 'B';
+    }
+
+    public String toString(){
+        return "This bin is " + heightft + "ft tall, has "
+         + contents + ", and has " + holes + " holes.";
     }
     
+    public boolean equals(Bin otherBin){ 
+        if (
+            this.contents.equals(otherBin.contents) &&
+            this.heightft == otherBin.heightft &&
+            this.holes == otherBin.holes &&
+            this.initial == otherBin.initial &&
+            this.shape == otherBin.shape &&
+            this.isClosed == otherBin.isClosed
+            ){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
     public void rename(){
         initial = 'T';
@@ -40,7 +69,7 @@ public class Bin {
     }
 
     public void open(boolean isClosed){
-        if (isCLosed == true) {
+        if (isClosed == true) {
             System.out.println("You opened the bin ");
             isClosed = false;
         } else {
