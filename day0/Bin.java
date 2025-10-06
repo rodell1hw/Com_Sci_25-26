@@ -48,6 +48,15 @@ public class Bin {
 
     }
 
+    public void setContents(String contents){
+        this.contents = contents;
+    }
+
+    public String getContents(){
+        return contents;
+    }
+
+
     public void rename(){
         initial = 'T';
         System.out.print("You renamed the bin");
