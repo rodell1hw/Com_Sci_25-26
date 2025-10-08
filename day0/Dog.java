@@ -12,7 +12,7 @@ public class Dog {
         this.ownerName = ownerName;
         this.age = age;
         this.dogId = dogId;
-        this.dogChar = Dog.generateDogChar(this.dogId);
+        this.dogChar = PawsomeUtils.generateDogChar(this.dogId);
     }
 
     public Dog() {
@@ -20,7 +20,7 @@ public class Dog {
         this.ownerName = "Me";
         this.age = 67;
         this.dogId = 123;
-        this.dogChar = Dog.generateDogChar(this.dogId);
+        this.dogChar = PawsomeUtils.generateDogChar(this.dogId);
     }
 
     public int getAge() {
@@ -97,13 +97,6 @@ public class Dog {
     public String generateDogTag() {
         dogTag =  "" + dogId + dogChar;
         return dogTag;
-    }
-
-    public static char generateDogChar(int dogId) {
-        int digitThree = dogId % 10;
-        int digitTwo = (digitThree / 10) % 10;
-        int digitOne = (digitTwo / 10) % 10;
-        return (char)('F' + ((digitOne + digitTwo + digitThree) % 10));
     }
 
     public static String pickup(Dog dog, String personName) {
