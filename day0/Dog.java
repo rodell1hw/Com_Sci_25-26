@@ -11,16 +11,19 @@ public class Dog {
         this.name = name;
         this.ownerName = ownerName;
         this.age = age;
-        this.dogId = dogId;
-        this.dogChar = PawsomeUtils.generateDogChar(this.dogId);
+        this.dogId = PawesomeUtils.validateDogId(dogId);
+        this.dogChar = PawesomeUtils.generateDogChar(this.dogId);
+        this.dogTag = PawesomeUtils.generateDogTag(this.dogId, this.dogChar);
+
     }
 
     public Dog() {
         this.name = "Trevor";
         this.ownerName = "Me";
-        this.age = 67;
+        this.age = 5;
         this.dogId = 123;
-        this.dogChar = PawsomeUtils.generateDogChar(this.dogId);
+        this.dogChar = PawesomeUtils.generateDogChar(this.dogId);
+        this.dogTag = PawesomeUtils.generateDogTag(dogId, dogChar);
     }
 
     public int getAge() {
@@ -56,7 +59,12 @@ public class Dog {
     }
 
     public void setDogId(int dogId) {
+        if (dogId <= 100 || dogId >= 999) {
+            this.dogId = PawesomeUtils.validateDogId(dogId); 
+        }
         this.dogId = dogId;
+        this.dogChar = PawesomeUtils.generateDogChar(this.dogId);
+        this.dogTag = PawesomeUtils.generateDogTag(this.dogId, dogChar);
     }
 
     public void setDogTag(String dogTag) {
@@ -76,14 +84,14 @@ public class Dog {
     }
 
     public String toString() {
-        String aWord;
+        String thisWord;
         if (stillInFacility == true) {
-            aWord = "are";
+            thisWord = "are";
         } else {
-            aWord = "aren't";
+            thisWord = "aren't";
         }
-        return name + "is a good dog. They are " + age + "years old and belong to " + ownerName + ". They " + aWord + 
-        " currently in our facility. For employee use only: DogTag is " + dogTag + ".";
+        return name + "is a good dog. They are " + age + "years old and belong to " + ownerName + ". They " + thisWord 
+            + " currently in our facility. For employee use only: DogTag is " + dogTag + ".";
     }
 
     public boolean equals(Dog other) {
@@ -92,11 +100,6 @@ public class Dog {
         } else {
             return false;
         }
-    }
-
-    public String generateDogTag() {
-        dogTag =  "" + dogId + dogChar;
-        return dogTag;
     }
 
     public static String pickup(Dog dog, String personName) {
