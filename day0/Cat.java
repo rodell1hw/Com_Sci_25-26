@@ -2,25 +2,29 @@ public class Cat {
     private String name;
     private String ownerName;
     private int moodLevel;
-    private String catID;
+    private String catId;
     private char catChar;
     private boolean isHungry;
 
 	Cat(String name, String ownerName, int moodLevel, String catId) {
-		name = name;
-		ownerName = ownerName;
-		moodLevel = PawesomeUtils.validateMoodLevel(moodLevel);
-		catID = PawesomeUtils.validatecatId(catID);
-		catChar = PawesomeUtils.generateCatChar();
+		this.name = name;
+		this.ownerName = ownerName;
+		this.moodLevel = moodLevel;
+		if (catId == null) {
+            catId = "" + PurrfectUtils.generateRandomNumber(1000, 9999);
+        } else {
+			catId = PurrfectUtils.validateCatId(catId);
+		}
+		catChar = PurrfectUtils.generateCatChar(catId);
 		isHungry = true;
 	}
 
 	Cat() {
 		moodLevel = 5;
-		catID = "1234";
+		catId = "1234";
 		ownerName = "Phil";
 		name = "Fyl";
-		catChar = PawesomeUtils.generateCatChar();
+		catChar = PurrfectUtils.generateCatChar(catId);
 		isHungry = true;
 	}
 
@@ -28,12 +32,12 @@ public class Cat {
 		return catChar;
 	}
 
-	public String getCatID() {
-		return catID;
+	public String getCatId() {
+		return PurrfectUtils.validateCatId(catId);
 	}
 	
 	public int getMoodLevel() {
-		return moodLevel;
+		return PurrfectUtils.validateMoodLevel(moodLevel);
 	}
 
 	public String getName() {
@@ -44,12 +48,16 @@ public class Cat {
 		return ownerName;
 	}
 
+	public boolean isHungry() {
+		return isHungry;
+	}
+
 	public void setCatChar(char catChar) {
 		this.catChar = catChar;
 	}
 
-	public void setCatID(String catID) {
-		this.catID = catID;
+	public void setCatId(String catId) {
+		this.catId = PurrfectUtils.validateCatId(catId);
 	}
 
 	public void setHungry(boolean isHungry) {
@@ -69,7 +77,7 @@ public class Cat {
 	}
 
 	public String generateCatTag() {
-		return catID + catChar;
+		return catId + catChar;
 	}
 
 	public String toString() {
@@ -77,10 +85,12 @@ public class Cat {
 	}
 
 	public boolean equals(Cat other) {
-		if (this.toString().equals(other.toString()) {
+		if (this.toString().equals(other.toString())) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+
+
 }
