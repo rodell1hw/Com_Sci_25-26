@@ -21,7 +21,6 @@ public class PurrfectUtils {
     public static int generateRandomNumber(int low, int high) {
         if (low > high) {
             low = high;
-            high = low;
         }
         return (int)((Math.random() * (high - low + 1) + low));
     }

@@ -44,7 +44,7 @@ public class ArrayOpsTester {
 
         String input1 = "Hello, World!";
         int[] frequencies1 = ArrayOps.countLetterFrequencies(input1);
-        System.out.println(ArrayOps.printIntegerArray(frequencies1));
+        ArrayOps.printIntegerArray(frequencies1);
         // Letter: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W,
         // X, Y, Z]
         // Output: [0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 1,
@@ -114,12 +114,12 @@ public class ArrayOpsTester {
 
         int[] array1 = { 1, 2, 3, 4, 5 };
         int[] reversedArr1 = ArrayOps.reverseIntArray(array1);
-        ArrayOps.printIntegerArray(reversedArr1);
+        System.out.println(ArrayOps.printIntegerArray(reversedArr1));
         // Output: [5, 4, 3, 2, 1]
 
         int[] array2 = { 10, 20, 30, 40 };
         int[] reversedArr2 = ArrayOps.reverseIntArray(array2);
-        ArrayOps.printIntegerArray(reversedArr2);
+        System.out.println(ArrayOps.printIntegerArray(reversedArr2));
         // Output: [40, 30, 20, 10]
 
         int[] array3 = { -1, -2, -3, -4 };

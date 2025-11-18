@@ -47,7 +47,7 @@ public class ArrayOps {
      * @return The largest integer in the array.
      */
     public static int findMax(int[] array) {
-        int max = 0;
+        int max = -10000;
         for (int i = 0; i < array.length; i++) {
             if (array[i] > max) {
                 max = array[i];
@@ -67,8 +67,11 @@ public class ArrayOps {
      */
     public static String findLongestString(String[] array) {
         String max = "";
+        if (array == null) {
+            return max;
+        }
         for (int i = 0; i < array.length; i++) {
-            if (array[i].length() > max.length()) {
+            if (array[i] != null && array[i].length() > max.length()) {
                 max = array[i];
             }
         } 
@@ -84,10 +87,19 @@ public class ArrayOps {
      */
     public static double averageStringLength(String[] array) {
         int total = 0;
+        int x = array.length;
         for (int i = 0; i < array.length; i++) {
-            total += array[i].length();
-        } 
-        return total / array.length;
+            if (array[i] == null) {
+                x--;
+            } else {
+                total += array[i].length();
+            }
+        }
+        if (x == 0) {
+            return 0;
+        } else {
+            return (double) total / x;
+        }
     }
 
     /**
@@ -147,9 +159,13 @@ public class ArrayOps {
      * @return The resized array
      */
     public static int[] resizeIntArray(int[] array) {
+        if (array == null) {
+            return new int[0];
+        }
         int [] newArray = new int[array.length * 2];
-        for (int i = 0; i < array.length; i++)
+        for (int i = 0; i < array.length; i++) {
             newArray[i] = array[i];
+        }
         return newArray;
     }
 
@@ -167,7 +183,15 @@ public class ArrayOps {
      *         each String
      */
     public static String[] addNumToStringArray(String[] array) {
-        return new String[0];
+        if (array == null) {
+            return new String[0];
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                array[i] = "#" + i + " " + array[i];
+            }
+        } 
+        return array;
     }
 
     /**
@@ -178,7 +202,15 @@ public class ArrayOps {
      * @return The reversed array
      */
     public static int[] reverseIntArray(int[] array) {
-        return new int[0];
+        if (array == null) {
+            return new int[0];
+        }
+        int [] newArray = new int[array.length];
+        for (int i = array.length - 1; i >= 0; i--) {
+            int destination = (int) Math.abs(i - (array.length - 1));
+            newArray[destination] = array[i];
+        }
+        return newArray;
     }
 
 }
