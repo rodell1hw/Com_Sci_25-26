@@ -51,14 +51,18 @@ public class StudentRecord {
     }
 
     public boolean equals(StudentRecord other) {
-        for (int i = 0; i < other.scores.length; i++) {
-            for (int j = 0; i < scores.length; i++) {
-                if (i != j) {
-                    return false;
-                }
-            }
-        } 
-        return true;
+        if (this.toString().equals(other.toString())) {
+            return true;
+        } else {
+            return false;
+        }
+        // for (int i = 0; i < other.scores.length; i++) {
+        // for (int j = 0; i < scores.length; i++) {
+        // if (i != j) {
+        // return false;
+        // }
+        // }
+        // }
     }
 
     // methods
