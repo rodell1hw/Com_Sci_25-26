@@ -17,7 +17,7 @@ public class Unit3ExercisesTester {
             System.out.println("Expected exception: " + Unit3Exercises.calculateAverageStringLength(letters));
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the array was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
     }
 
@@ -38,7 +38,7 @@ public class Unit3ExercisesTester {
             System.out.println("Expected exception: " + Unit3Exercises.reverseString(testString));
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the string was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
     }
 
@@ -56,7 +56,7 @@ public class Unit3ExercisesTester {
             System.out.println("Expected exception: " + Unit3Exercises.findMaxValue(testArray));
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the string was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
     }
 
@@ -67,14 +67,12 @@ public class Unit3ExercisesTester {
         testString = "no";
         // Test Case - Main Case
         System.out.println("Expected false: " + Unit3Exercises.isPalindrome(testString));
-        testString = "";
-        System.out.println("Expected execption false: " + Unit3Exercises.isPalindrome(testString));
         try {
-            testString = null;
+            testString = "";
             System.out.println("Expected exception: " + Unit3Exercises.isPalindrome(testString));
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the string was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
     }
 
@@ -92,7 +90,7 @@ public class Unit3ExercisesTester {
             System.out.println("Expected exception 0: " + Unit3Exercises.sumEvenNumbers(testArray));
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the string was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
     }
 
@@ -106,7 +104,7 @@ public class Unit3ExercisesTester {
             System.out.println("Expected exception 0: " + Unit3Exercises.calculateSumOfSquares(testArray));
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the string was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
     }
 
@@ -119,7 +117,7 @@ public class Unit3ExercisesTester {
             System.out.println("Expected exception -1: " + Unit3Exercises.getNthFibonacci(number));
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the string was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
 
     }
@@ -136,7 +134,7 @@ public class Unit3ExercisesTester {
             Unit3Exercises.sortArrayDescending(testArray);
         } catch (Exception e) {
             System.out.println(e.toString());
-            System.out.println("The method threw an exception when the string was null, as intended");
+            System.out.println("The method threw an exception as intended");
         }
     }
 
@@ -148,13 +146,19 @@ public class Unit3ExercisesTester {
         // Test Case - Main Case
         System.out.println("Expected went: " + Unit3Exercises.findLongestWord(testString));
         testString = "";
-        System.out.println("Expected execption no longest word: " + Unit3Exercises.findLongestWord(testString));
         try {
             testString = null;
             System.out.println("Expected exception no longest word: " + Unit3Exercises.findLongestWord(testString));
         } catch (Exception e) {
             System.out.println(e.toString());
             System.out.println("The method threw an exception when the string was null, as intended");
+        }
+        try {
+            testString = "";
+            System.out.println("Expected exception no longest word: " + Unit3Exercises.findLongestWord(testString));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an exception when the string was \"\", as intended");
         }
     }
 
@@ -164,18 +168,86 @@ public class Unit3ExercisesTester {
         int years = 4;
         System.out.println("Expected 7.43: " + Unit3Exercises.calculateInterest(principal, rate, years));
         // Test Case - Edge Case principal amnt negative
-        principal = -6.0;
-        rate = 5.5;
-        years = 4;
-        System.out.println("Expected 0.0: " + Unit3Exercises.calculateInterest(principal, rate, years));
-        principal = 6.0;
-        rate = -5.5;
-        years = 4;
-        System.out.println("Expected 0.0: " + Unit3Exercises.calculateInterest(principal, rate, years));
-        principal = 6.0;
-        rate = -5.5;
-        years = 0;
-        System.out.println("Expected 0.0: " + Unit3Exercises.calculateInterest(principal, rate, years));
+        try {
+            principal = -6.0;
+            rate = 5.5;
+            years = 4;
+            System.out.println("Expected 0.0: " + Unit3Exercises.calculateInterest(principal, rate, years));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an exception as intended");
+        }
+        try {
+            principal = 6.0;
+            rate = -5.5;
+            years = 4;
+            System.out.println("Expected 0.0: " + Unit3Exercises.calculateInterest(principal, rate, years));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an exception as intended");
+        }
+        try {
+            principal = 6.0;
+            rate = 5.5;
+            years = -4;
+            System.out.println("Expected 0.0: " + Unit3Exercises.calculateInterest(principal, rate, years));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            System.out.println("The method threw an exception as intended");
+        }
+    }
+
+    public static void testParsePositiveInteger() {
+        // main case
+        String str = "4";
+        // try {
+        System.out.println("Expected 4: " + Unit3Exercises.parsePositiveInteger(str));
+        // } catch (Exception e) {
+        // System.out.println(e.toString());
+        // System.out.println("The method threw an exception as intended");
+        // }
+        // other case
+        str = "-2";
+        // try {
+        System.out.println("Expected 1: " + Unit3Exercises.parsePositiveInteger(str));
+        // } catch (Exception e) {
+        // System.out.println(e.toString());
+        // System.out.println("The method threw an exception as intended");
+        // }
+    }
+
+    public static void testGetArrayElement() {
+        String[] arr = { "hi", "hola", "aloha" };
+        int index = 2;
+        System.out.println("Expected aloha: " + Unit3Exercises.getArrayElement(arr, index));
+
+        index = 4;
+        System.out.println("Expected null: " + Unit3Exercises.getArrayElement(arr, index));
+    }
+
+    public static void testCalculateSquareRoot() {
+        int number = 9;
+        System.out.println("Expected 3.0: " + Unit3Exercises.calculateSquareRoot(number));
+        number = -4;
+        System.out.println("Expected NaN: " + Unit3Exercises.calculateSquareRoot(number));
+
+    }
+
+    public static void testSumArrayElements() {
+        int[] arr = { 1, 3, 4 };
+        System.out.println("Expected 8: " + Unit3Exercises.sumArrayElements(arr));
+
+        arr = null;
+        System.out.println("Expected 0: " + Unit3Exercises.sumArrayElements(arr));
+    }
+
+    public static void testCalculatePower() {
+        int exponent = 2;
+        double base = 3.0;
+        System.out.println("Expected 9.0: " + Unit3Exercises.calculatePower(base, exponent));
+
+        exponent = -2;
+        System.out.println("Expected 1.0: " + Unit3Exercises.calculatePower(base, exponent));
     }
 
     public static void main(String[] args) {
@@ -189,5 +261,10 @@ public class Unit3ExercisesTester {
         testSortArrayDescending();
         testFindLongestWord();
         testCalculateInterest();
+        testParsePositiveInteger();
+        testGetArrayElement();
+        testCalculateSquareRoot();
+        testSumArrayElements();
+        testCalculatePower();
     }
 }

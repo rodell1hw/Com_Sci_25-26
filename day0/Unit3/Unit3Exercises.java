@@ -5,7 +5,7 @@ public class Unit3Exercises {
     public static double calculateAverageStringLength(String[] strs) {
         int sum = 1;
         if (strs == null) {
-            return 0;
+            throw new IllegalArgumentException();
         }
         int a = 0;
         for (int i = 1; i < strs.length; i++) {
@@ -24,7 +24,7 @@ public class Unit3Exercises {
     public static String reverseString(String str) {
         String reversed = "";
         if (str == null) {
-            return "";
+            throw new IllegalArgumentException();
         }
         for (int i = str.length() - 1; i >= 0; i--) {
             reversed = reversed + str.charAt(i);
@@ -36,7 +36,7 @@ public class Unit3Exercises {
     public static int findMaxValue(int[] numbers) {
         int max = -100000;
         if (numbers == null) {
-            return 0;
+            throw new IllegalArgumentException();
         }
         for (int i = 1; i <= numbers.length; i++) {
             if (numbers[i - 1] > max) {
@@ -50,7 +50,7 @@ public class Unit3Exercises {
     // backwards.
     public static boolean isPalindrome(String str) {
         if (str == null || str.equals("")) {
-            return false;
+            throw new IllegalArgumentException();
         }
         int left = 0;
         int right = str.length() - 1;
@@ -69,7 +69,7 @@ public class Unit3Exercises {
     // Intended: sum only the even numbers in the array.
     public static int sumEvenNumbers(int[] numbers) {
         if (numbers == null) {
-            return 0;
+            throw new IllegalArgumentException();
         }
         int sum = 0;
         for (int i = 0; i < numbers.length; i++) {
@@ -86,7 +86,7 @@ public class Unit3Exercises {
     public static int calculateSumOfSquares(int[] numbers) {
         int sum = 0;
         if (numbers == null) {
-            return 0;
+            throw new IllegalArgumentException();
         }
         for (int i = 0; i < numbers.length; i++) {
             sum += Math.pow(numbers[i], 2);
@@ -95,8 +95,8 @@ public class Unit3Exercises {
     }
 
     public static int getNthFibonacci(int n) {
-        if (n <= 1) {
-            return n;
+        if (n < 1) {
+            throw new IllegalArgumentException();
         }
 
         int a = 0, b = 1, c;
@@ -110,7 +110,7 @@ public class Unit3Exercises {
 
     public static void sortArrayDescending(int[] arr) {
         if (arr == null) {
-            return;
+            throw new IllegalArgumentException();
         }
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
@@ -125,7 +125,7 @@ public class Unit3Exercises {
 
     public static String findLongestWord(String sentence) {
         if (sentence == null || sentence.equals("")) {
-            return "No longest word";
+            throw new IllegalArgumentException();
         }
         String[] words = sentence.split(" ");
         String longestWord = "";
@@ -139,12 +139,75 @@ public class Unit3Exercises {
 
     public static double calculateInterest(double principal, double rate, int years) {
         if (principal < 0 || rate < 0 || years <= 0) {
-            return 0;
+            throw new IllegalArgumentException();
         }
         for (int i = 0; i < years; i++) {
             principal += principal * (rate / 100);
         }
         return principal;
+    }
+
+    public static int parsePositiveInteger(String str) {
+        try {
+            int number = Integer.parseInt(str);
+            if (number < 0) {
+                throw new NumberFormatException();
+            }
+            return number;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 1;
+        }
+
+    }
+
+    public static String getArrayElement(String[] arr, int index) {
+
+        try {
+            return arr[index];
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
+    public static double calculateSquareRoot(int number) {
+        try {
+            if (number < 0) {
+                throw new NumberFormatException();
+            }
+            return Math.sqrt(number);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return Double.NaN;
+        }
+
+    }
+
+    public static int sumArrayElements(int[] array) {
+        try {
+            int sum = 0;
+            for (int i = 0; i < array.length; i++) {
+                sum += array[i];
+            }
+            return sum;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 0;
+        }
+
+    }
+
+    public static double calculatePower(double base, int exponent) {
+        try {
+            if (exponent < 0) {
+                throw new IllegalArgumentException();
+            }
+            return Math.pow(base, exponent);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return 1;
+        }
     }
 
 }
