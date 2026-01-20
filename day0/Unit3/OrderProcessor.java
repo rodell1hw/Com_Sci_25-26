@@ -1,4 +1,4 @@
-package Unit3;
+package unit3;
 
 //I broke a lot of the code into different smaller methods 
 // so there wasn't a bunch of things happening in one big method.

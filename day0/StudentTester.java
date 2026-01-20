@@ -1,9 +1,9 @@
 public class StudentTester {
     public static void main(String[] args) {
-        Student freshman = new Student("Noni", 10);
-        Student sophmore = new Student("Eze");
-        Student junior = new Student("Declan", 11);
-        Student senior = new Student("Martin");
+        StudentOG freshman = new StudentOG("Noni", 10);
+        StudentOG sophmore = new StudentOG("Eze");
+        StudentOG junior = new StudentOG("Declan", 11);
+        StudentOG senior = new StudentOG("Martin");
 
         System.out.println(freshman.toString());
         System.out.println(sophmore.getId());

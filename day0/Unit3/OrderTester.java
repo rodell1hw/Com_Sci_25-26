@@ -1,4 +1,4 @@
-package Unit3;
+package unit3;
 
 public class OrderTester {
     public static void main(String[] args) {

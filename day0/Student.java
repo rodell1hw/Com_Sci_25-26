@@ -1,74 +1,124 @@
+import java.util.Random;
+
 public class Student {
-    private String name;
-    private int grade;
-    private String id;
+    static String[] NAMES_IN_USE = new String[10];
+    static int NAME_COUNT = 0;
+    static final String CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$";
 
-    Student(String name, int grade) {
+    String name;
+    String password;
+    String email;
+    Assignment[] assignments;
+    int assignmentCount;
+
+    public Student(String name, String password, String email) {
+        requireNotBlank(name, "name");
+        requireNotBlank(password, "password");
+        requireEmail(email);
+        if (name.contains("@")) {
+            throw new IllegalArgumentException("Name cannot include '@'.");
+        }
+        if (nameExists(name)) {
+            throw new IllegalStateException("Display name taken.");
+        }
+        addName(name);
         this.name = name;
-        this.grade = grade;
-        this.id = generateId();
+        this.password = password;
+        this.email = email;
+        this.assignments = new Assignment[5];
+        this.assignmentCount = 0;
     }
 
-    Student(String name) {
-        this.name = name;
-        this.grade = 10;
-        this.id = generateId();
+    public void changeName(String newDisplayName) {
+        requireNotBlank(newDisplayName, "newDisplayName");
+        if (newDisplayName.contains("@")) {
+            throw new IllegalArgumentException("Name cannot include '@'.");
+        }
+        if (nameExists(newDisplayName)) {
+            throw new IllegalStateException("Display name taken.");
+        }
+        replaceName(this.name, newDisplayName);
+        this.name = newDisplayName;
     }
 
-    public int getGrade() {
-        return grade;
-    }
-    
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public String resetPassword() {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalStateException("Student name missing.");
+        }
+        // Simple random password generator for demo purposes
+        Random r = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 12; i++) {
+            sb.append(CHARS.charAt(r.nextInt(CHARS.length())));
+        }
+        password = sb.toString();
+        if (password.length() < 8) {
+            throw new IllegalStateException("Password generator failed.");
+        }
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Assignment submitAssignment(String title, String description) {
+        if (assignments == null) {
+            throw new IllegalStateException("Assignment storage missing.");
+        }
+        if (assignmentCount >= assignments.length) {
+            throw new IllegalStateException("Assignment limit reached.");
+        }
+        requireNotBlank(title, "title");
+        requireNotBlank(description, "description");
+        assignments[assignmentCount] = new Assignment(title, description);
+        return assignments[assignmentCount++];
     }
 
-    public String generateId() {
-        int x = (int) (Math.random() * 8 + 1);
-        String idString = "" + x;
-        x = (int) (Math.random() * 8 + 1);
-        idString += x;
-        x = (int) (Math.random() * 8 + 1);
-        idString += x;
-        idString += "-";
-        x = (int) (Math.random() * 9 + 1);
-        idString += x;
-        x = (int) (Math.random() * 9 + 1);
-        idString += x;
-        x = (int) (Math.random() * 9 + 1);
-        idString += x;
-        x = (int) (Math.random() * 9 + 1);
-        idString += x;
-        return idString;
-    }
-       
-    public String toString() {
-        return name + "is a " + grade + "th grade student. Their id is " + id;
+    private static boolean nameExists(String name) {
+        for (int i = 0; i < NAME_COUNT; i++) {
+            if (NAMES_IN_USE[i].equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public Boolean equals(Student other) {
-        if (this.id.equals(other.id)
-            && this.name.equals(other.name)
-            && this.grade == other.grade) {
-            return true;
-        } else {
-            return false;
+    private static void addName(String name) {
+        ensureNameCapacity();
+        NAMES_IN_USE[NAME_COUNT++] = name;
+    }
+
+    private static void replaceName(String oldName, String newName) {
+        for (int i = 0; i < NAME_COUNT; i++) {
+            if (NAMES_IN_USE[i].equals(oldName)) {
+                NAMES_IN_USE[i] = newName;
+                return;
+            }
+        }
+        addName(newName);
+    }
+
+    private static void ensureNameCapacity() {
+        if (NAME_COUNT < NAMES_IN_USE.length) {
+            return;
+        }
+        String[] bigger = new String[NAMES_IN_USE.length * 2];
+        for (int i = 0; i < NAMES_IN_USE.length; i++) {
+            bigger[i] = NAMES_IN_USE[i];
+        }
+        NAMES_IN_USE = bigger;
+    }
+
+    private static void requireNotBlank(String s, String field) {
+        if (s == null) {
+            throw new IllegalArgumentException(field + " is null.");
+        }
+        if (s.trim().isEmpty()) {
+            throw new IllegalArgumentException(field + " is blank.");
+        }
+    }
+
+    private static void requireEmail(String email) {
+        requireNotBlank(email, "email");
+        if (!email.contains("@") || !email.contains(".")) {
+            throw new IllegalArgumentException("Invalid email.");
         }
     }
 }

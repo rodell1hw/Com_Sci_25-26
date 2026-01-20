@@ -1,3 +1,5 @@
+package Unit4Exercises;
+
 public class ArrayOps {
 
     /**
@@ -52,7 +54,7 @@ public class ArrayOps {
             if (array[i] > max) {
                 max = array[i];
             }
-        } 
+        }
         return max;
     }
 
@@ -74,7 +76,7 @@ public class ArrayOps {
             if (array[i] != null && array[i].length() > max.length()) {
                 max = array[i];
             }
-        } 
+        }
         return max;
     }
 
@@ -120,7 +122,7 @@ public class ArrayOps {
             return new int[0];
         }
         input = input.toLowerCase();
-        int [] thing = new int[26];
+        int[] thing = new int[26];
         for (int i = 0; i < input.length(); i++) {
             for (int j = 97; j < 123; j++) {
                 if ((int) input.charAt(i) == j) {
@@ -162,7 +164,7 @@ public class ArrayOps {
         if (array == null) {
             return new int[0];
         }
-        int [] newArray = new int[array.length * 2];
+        int[] newArray = new int[array.length * 2];
         for (int i = 0; i < array.length; i++) {
             newArray[i] = array[i];
         }
@@ -190,7 +192,7 @@ public class ArrayOps {
             if (array[i] != null) {
                 array[i] = "#" + i + " " + array[i];
             }
-        } 
+        }
         return array;
     }
 
@@ -205,7 +207,7 @@ public class ArrayOps {
         if (array == null) {
             return new int[0];
         }
-        int [] newArray = new int[array.length];
+        int[] newArray = new int[array.length];
         for (int i = array.length - 1; i >= 0; i--) {
             int destination = (int) Math.abs(i - (array.length - 1));
             newArray[destination] = array[i];

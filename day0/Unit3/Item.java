@@ -1,4 +1,4 @@
-package Unit3;
+package unit3;
 
 class Item {
     private String name;

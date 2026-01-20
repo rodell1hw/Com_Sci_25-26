@@ -1,4 +1,4 @@
-package Unit3;
+package unit3;
 
 public class Unit3Exercises {
     // Intended: return the average length of the strings in the array.
